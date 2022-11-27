@@ -8,16 +8,21 @@ var validatePhone = (phone) => {
 }
 
 var validatePassword = (password) => {
-    return password.match(/^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[a-zA-Z])(?=.*[!@#$%^&*]).{8,16}$/);
+    return password.match(/^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[a-zA-Z])(?=.*[!@#$%^&*]).{6,10}$/);
 
+}
+var validateUsername = (username) => {
+    return username.match(/^[A-Z]{1}[a-z0-9]{5,}$/);
 }
 var validate = () => {
     var result = '';
     var resultp = '';
     var resultps = '';
+    var resultu = ''
     var email = document.getElementById('email').value;
     var phone = document.getElementById('phone').value;
     var password = document.getElementById('password').value;
+    var username = document.getElementById('username').value;
 
     if (validateEmail(email)) {
         result = '  is valid';
@@ -26,7 +31,16 @@ var validate = () => {
         result = '  is not valid';
         document.getElementById('echeck').innerText = result
     }
-    
+
+    if (validateUsername(username)) {
+        resultu = '  is valid';
+        document.getElementById('ucheck').innerText = resultu
+    } else {
+        resultu = '  is not valid';
+        document.getElementById('ucheck').innerText = resultu
+    }
+
+
     if (validatePhone(phone)) {
         resultp = ' is valid';
         document.getElementById('pcheck').innerText = resultp
@@ -40,7 +54,7 @@ var validate = () => {
         document.getElementById('pscheck').innerText = resultps
     } else {
         resultps = ' is not valid';
-        document.getElementById('pscheck').innerText = resultp
+        document.getElementById('pscheck').innerText = resultps
     }
 }
 
